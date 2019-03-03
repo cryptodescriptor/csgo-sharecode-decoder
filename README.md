@@ -13,5 +13,5 @@ sharecode decoder from https://github.com/joshuaferrara/node-csgo ported to work
 var decoder = new SharecodeDecoder('CSGO-*****-*****-*****-*****-*****');
 
 console.log(decoder.decode());
-</srcipt>
+</script>
 ```
