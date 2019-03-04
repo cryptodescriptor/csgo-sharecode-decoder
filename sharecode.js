@@ -14,7 +14,6 @@ function ByteReader(code_decoded) {
 
   this.read_int64 = function() {
     var temp = consume.call(this, 8);
-    console.log(temp);
     var unpacked = unpack("C*", temp);
     var result = new BigNumber(0);
     Object.keys(unpacked).forEach(function(key) {
