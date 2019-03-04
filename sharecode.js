@@ -3,17 +3,18 @@ BigNumber.config({
   EXPONENTIAL_AT: 50
 });
 
-var code_decoded;
-
 function consume(bytes) {
-  var ret = code_decoded.slice(0, bytes);
-  code_decoded = code_decoded.slice(ret.length);
+  var ret = this.code_decoded.slice(0, bytes);
+  this.code_decoded = this.code_decoded.slice(ret.length);
   return ret;
 }
 
-function ByteReader() {
+function ByteReader(code_decoded) {
+  this.code_decoded = code_decoded;
+
   this.read_int64 = function() {
-    var temp = consume(8);
+    var temp = consume.call(this, 8);
+    console.log(temp);
     var unpacked = unpack("C*", temp);
     var result = new BigNumber(0);
     Object.keys(unpacked).forEach(function(key) {
@@ -29,7 +30,7 @@ function ByteReader() {
   }
 
   this.read_short = function() {
-    var temp = consume(2);
+    var temp = consume.call(this, 2);
     var unpacked = unpack("S*", temp);
     return unpacked[''].toString();
   }
@@ -88,8 +89,8 @@ function SharecodeDecoder(code) {
   }
 
   this.decode = function() {
-    code_decoded = this.decoded_code();
-    var reader    = new ByteReader();
+    var code_decoded = this.decoded_code();
+    var reader    = new ByteReader(code_decoded);
     var matchId   = reader.read_int64();
     var outcomeId = reader.read_int64();
     var tokenId   = reader.read_short();
