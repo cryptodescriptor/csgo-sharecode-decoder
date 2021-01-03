@@ -1,6 +1,6 @@
 # csgo-sharecode-decoder
 
-sharecode decoder from https://github.com/joshuaferrara/node-csgo ported to work in the browser without the need for babel or ES6.
+Sharecode decoder from https://github.com/joshuaferrara/node-csgo ported to work in the browser without the need for Babel or ES6.
 
 ## Usage
 
